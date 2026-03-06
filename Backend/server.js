@@ -8,9 +8,7 @@ const cors = require("cors");
 
 const app = express();
 
-// ======================
-// MIDDLEWARE
-// ======================
+
 app.use(cors({
   origin: ["http://localhost:5173"], // your frontend
   methods: ["GET", "POST"],
@@ -18,9 +16,7 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// ======================
-// HTTP SERVER + SOCKET.IO
-// ======================
+
 const server = http.createServer(app);
 
 const io = new Server(server, {
@@ -32,9 +28,6 @@ const io = new Server(server, {
   transports: ["websocket"], // force websocket
 });
 
-// ======================
-// HELPER: GENERATE RANDOM EVENT
-// ======================
 function generateRandomEvent() {
   const eventTypes = ["Speeding", "Harsh Braking", "Drowsiness"];
   return {
@@ -46,9 +39,9 @@ function generateRandomEvent() {
   };
 }
 
-// ======================
+
 // SOCKET CONNECTION
-// ======================
+
 io.on("connection", (socket) => {
   console.log("✅ Client connected:", socket.id);
 
