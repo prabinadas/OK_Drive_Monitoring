@@ -10,10 +10,16 @@ const app = express();
 
 
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:5174","https://ok-drive-monitoring.vercel.app/"], // your frontend
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://ok-drive-monitoring.vercel.app"
+  ],
   methods: ["GET", "POST"],
   credentials: true,
 }));
+
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -24,11 +30,15 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173", "http://localhost:5174","https://ok-drive-monitoring.vercel.app/"],
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://ok-drive-monitoring.vercel.app"
+    ],
     methods: ["GET", "POST"],
-    credentials: true
+    credentials: true,
   },
-  transports: ["websocket"], // force websocket
+  transports: ["websocket"],
 });
 
 function generateRandomEvent() {
