@@ -10,7 +10,7 @@ const app = express();
 
 
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:5174"], // your frontend
+  origin: ["http://localhost:5173", "http://localhost:5174","https://ok-drive-monitoring.vercel.app/"], // your frontend
   methods: ["GET", "POST"],
   credentials: true,
 }));
@@ -24,7 +24,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: ["http://localhost:5173", "http://localhost:5174","https://ok-drive-monitoring.vercel.app/"],
     methods: ["GET", "POST"],
     credentials: true
   },
