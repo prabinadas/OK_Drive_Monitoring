@@ -16,6 +16,9 @@ app.use(cors({
 }));
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("OK Drive Backend is running successfully 🚀");
+});
 
 const server = http.createServer(app);
 
