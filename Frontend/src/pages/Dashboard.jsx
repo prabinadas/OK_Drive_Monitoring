@@ -36,10 +36,7 @@ export default function Dashboard() {
       setSocketConnected(true);
     });
 
-    socket.on("connect_error", (err) => {
-      console.error("❌ Socket connect error:", err.message);
-      setSocketConnected(false);
-    });
+    
 
     socket.on("driver_event", (newEvent) => {
       console.log("🔥 RECEIVED EVENT:", newEvent);

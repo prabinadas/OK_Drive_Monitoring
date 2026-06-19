@@ -10,7 +10,7 @@ const app = express();
 
 
 app.use(cors({
-  origin: ["http://localhost:5173"], // your frontend
+  origin: ["http://localhost:5173", "http://localhost:5174"], // your frontend
   methods: ["GET", "POST"],
   credentials: true,
 }));
@@ -21,7 +21,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173", "http://localhost:5174"],
     methods: ["GET", "POST"],
     credentials: true
   },
@@ -53,18 +53,17 @@ io.on("connection", (socket) => {
   });
 });
 
-// ======================
 // EMIT RANDOM DRIVER EVENTS EVERY 3 SECONDS
-// ======================
+
 setInterval(() => {
   const event = generateRandomEvent();
   console.log("🔥 Emitting event:", event);
   io.emit("driver_event", event);
 }, 3000);
 
-// ======================
+
 // START SERVER
-// ======================
+
 const PORT = process.env.PORT || 5001;
 server.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
